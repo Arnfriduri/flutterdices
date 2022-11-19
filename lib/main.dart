@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'dart:math';
 import 'color_schemes.g.dart';
 
 void main() {
@@ -11,7 +12,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      theme: ThemeData(useMaterial3: false, colorScheme: lightColorScheme),
+      theme: ThemeData(useMaterial3: true, colorScheme: lightColorScheme),
       darkTheme: ThemeData(useMaterial3: true, colorScheme: darkColorScheme),
       home: const Home(),
     );
@@ -25,30 +26,51 @@ class Home extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          elevation: 2,
-          title: Text("Dice"),
-        ),
-        body: Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              const Text(
-                'Update with your UI',
-              ),
-            ],
-          ),
-        ),
-        floatingActionButton:
-        FloatingActionButton(onPressed: () => {}, tooltip: 'Increment'));
+      appBar: AppBar(
+        elevation: 2,
+        title: Text('Dice App'),
+      ),
+      body: DicePage(),
+      backgroundColor: Colors.cyan,
+    );
   }
 }
 
-class DicePage extends StatelessWidget{
+class DicePage extends StatefulWidget {
+
   @override
-  Widget build(BuildContext context){
-    return Row(
-      children: <Widget>[Image(image: AssetImage('images/'))],
-    )
+  _DicePageState createState() => _DicePageState();
+}
+
+class _DicePageState extends State<DicePage> {
+  int leftDiceNumber =3;
+  int righDiceNumber = 2;
+  @override
+  Widget build(BuildContext context) {
+    return Center(
+      child: Row(
+        children: <Widget>[
+          Expanded(
+            child: TextButton(
+              onPressed: () {
+                setState(() {
+                  leftDiceNumber = Random().nextInt(6)+1;
+                });
+              },
+              child: Image.asset('images/dice$leftDiceNumber.png'),
+            ),
+          ),
+          Expanded(
+            child: TextButton(
+                onPressed: () {
+                  setState(() {
+                    righDiceNumber = Random().nextInt(6)+1;
+                  });
+                },
+                child: Image.asset('images/dice$righDiceNumber.png')),
+          ),
+        ],
+      ),
+    );
   }
 }
