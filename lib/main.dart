@@ -27,7 +27,7 @@ class Home extends StatelessWidget {
     return Scaffold(
         appBar: AppBar(
           elevation: 2,
-          title: Text("Material Theme Builder"),
+          title: Text("Dice"),
         ),
         body: Center(
           child: Column(
@@ -41,5 +41,14 @@ class Home extends StatelessWidget {
         ),
         floatingActionButton:
         FloatingActionButton(onPressed: () => {}, tooltip: 'Increment'));
+  }
+}
+
+class DicePage extends StatelessWidget{
+  @override
+  Widget build(BuildContext context){
+    return Row(
+      children: <Widget>[Image(image: AssetImage('images/'))],
+    )
   }
 }
